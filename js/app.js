@@ -9,23 +9,12 @@ const completed = document.getElementById("completed");
 const footerItem = document.querySelectorAll(".footer__item");
 const clear = document.querySelector(".footer__clear");
 
-// function addTotalList() {
-//   let a = 0;
-
-//   function increment() {
-//     return (a += 1);
-//   }
-
-//   return increment;
-// }
-
 function count() {
   const allList = document.querySelectorAll(".list__item");
   let c = 0;
   allList.forEach((e) => {
     if (e.style.display != "none") {
       c++;
-      console.log(e);
     }
   });
   return c;
@@ -36,6 +25,7 @@ function resetFooterItem() {
     e.classList.remove("selected");
   });
 }
+
 function addNewList(value) {
   return `<li class="list__item default"><span class="checkbox"></span>${value}</li>`;
 }
@@ -53,8 +43,6 @@ function addCheckBoxListener(element) {
     }
   });
 }
-
-// const totalList = addTotalList();
 
 all.addEventListener("click", () => {
   const allList = document.querySelectorAll(".list__item");
@@ -111,5 +99,11 @@ window.addEventListener("keyup", (e) => {
 
     addCheckBoxListener(ulElement.lastChild.firstChild);
     counter.innerHTML = `${count()} items left`;
+
+    const lists = document.querySelector(".list");
+    Sortable.create(lists, {
+      animation: 150,
+      ghostClass: "blue-background-class",
+    });
   }
 });
